@@ -1,9 +1,9 @@
 import express from 'express';
-import { addread } from '../controllers/readController.js';
+import { addread, getreads } from '../controllers/readController.js';
 import { verfifyJWTtoken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/addread',verfifyJWTtoken, addread);
-
+router.post('/addread', verfifyJWTtoken, addread);
+router.get('/myreads', verfifyJWTtoken, getreads)
 export default router;

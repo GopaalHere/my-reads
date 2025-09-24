@@ -3,6 +3,7 @@ import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
 import AddNew from "./components/AddNew"
+import MyReads from "./components/MyReads"
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <>
     <Navbar/>
       <Routes>
+        <Route path="/getreads" element={<MyReads/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/addnew" element={<AddNew/>}/>

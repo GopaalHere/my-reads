@@ -17,3 +17,7 @@ export const addnew = async(readData)=>{
     const res = await API.post('/addread',readData);
     return res.data;
 }
+export const getreads = async()=>{
+    const res = await API.get('/myreads');
+    return res.data;
+}
