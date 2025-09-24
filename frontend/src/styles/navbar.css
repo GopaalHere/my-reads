@@ -1,0 +1,24 @@
+.navContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(165, 42, 128);
+    position:fixed;
+    width: 100%;
+    padding: 10px;
+}
+.logoname h1{
+    background-color: rgb(165, 42, 128);
+    color: white;
+}
+.navs ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    background-color: rgb(165, 42, 128);
+    color: white;
+    font-size: 20px;
+}
+.navs ul li{
+    background-color: rgb(165, 42, 128);
+}
