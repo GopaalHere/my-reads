@@ -18,7 +18,8 @@ export const signup = async (req, res) => {
     res.cookie('token', token, 
     {httpOnly: true,
     sameSite: 'lax',
-    secure: false 
+    secure: false,
+    maxAge: 5 * 24 * 60 * 60 * 1000
     }).json({ success: true, message: "New User Created" })
 }
 
@@ -41,7 +42,8 @@ export const login = async (req, res) => {
             {
                 httpOnly: true,
                 sameSite: 'lax',
-                secure: false
+                secure: false,
+                maxAge: 5 * 24 * 60 * 60 * 1000
             }).json({ success: true, message: "login successfull" })
     } catch (err) {
         res.status(500).json({ error: err.message })

@@ -3,6 +3,7 @@ import { connectDB } from "./config/db.js";
 import cors from 'cors'
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
+import readRoutes from "./routes/readRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 connectDB();
 
 app.use('/api/auth',authRoutes)
+app.use('/api/reads',readRoutes);
 
 app.get("/",(req,res)=>{
     res.send({success:true,message:"Done"})

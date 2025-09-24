@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: rgb(165, 42, 128);
-    position:fixed;
+    position:sticky;
     width: 100%;
     padding: 10px;
 }
