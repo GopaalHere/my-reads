@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getreads } from "../../api/projectAPI.jsx";
+import ReadCard from "./ReadCard.jsx";
 
 const MyReads=()=>{
 
@@ -14,10 +15,10 @@ const MyReads=()=>{
     console.log(reads)
  return(
     <>
-    <div>
+    <div style={{display:"flex",flexWrap:"wrap"}}>
         {
             reads.map((read,index)=>(
-             <h1>Tilte:{read.title}</h1>
+             <ReadCard key={read._id} read={read} index={index}/>
             ))
         }
     </div>
