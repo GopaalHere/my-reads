@@ -21,3 +21,8 @@ export const getreads = async()=>{
     const res = await API.get('/myreads');
     return res.data;
 }
+
+export const logout = async()=>{
+    const res = await authAPI.post('/logout');
+    return res.data;
+}
