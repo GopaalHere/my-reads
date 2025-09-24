@@ -11,7 +11,7 @@ function App() {
     <>
     <Navbar/>
       <Routes>
-        <Route path="/getreads" element={<MyReads/>}/>
+        <Route path="/" element={<MyReads/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/addnew" element={<AddNew/>}/>
