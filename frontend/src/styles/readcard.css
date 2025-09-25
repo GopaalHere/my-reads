@@ -41,4 +41,18 @@
     box-shadow: 5px 5px 0px black;
     margin: 5px;
     cursor: pointer;
+    color: white;
+}
+.details a{
+    text-decoration: none;
+    background-color: rgb(47, 110, 47);
+    color: white;
+    box-shadow: 5px 5px 0px black;
+    padding: 5px;
+}
+.buttons{
+    background-color: rgb(235, 185, 193);
+    display: flex;
+    gap:1rem;
+    align-items: center;
 }

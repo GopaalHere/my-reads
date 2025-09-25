@@ -20,8 +20,10 @@ const ReadCard = ({ read, index, handleReadDelete }) => {
                 <h2>Read On : {read.date}</h2>
                 <h2>Rating : {read.rating}</h2>
                 <p>Notes: {read.notes}</p>
-                <button onClick={handleDelete}>Delete</button>
+                <div className="buttons">
+                 <button onClick={handleDelete}>Delete</button>
                 <Link to={`/update/${read._id}`}>Update</Link>
+                </div>
             </div>
         </div>
     )

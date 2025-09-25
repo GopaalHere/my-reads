@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/addnew.css'
-import { addnew, getOneRead, updateRead } from '../../api/projectAPI.jsx';
+import {getOneRead, updateRead } from '../../api/projectAPI.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 const UpdateRead = () => {
