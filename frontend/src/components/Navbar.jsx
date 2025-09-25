@@ -8,6 +8,7 @@ const Navbar = () => {
     const { user, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const[menuOpen,setMenuOpen] = useState(false);
     const handleLogout = async () => {
         try {
             await logout();
@@ -30,7 +31,10 @@ const Navbar = () => {
                 <div className="logoname">
                     <h1>MyReads</h1>
                 </div>
-                <div className="navs">
+                <div className="hamburger" onClick={()=>setMenuOpen(!menuOpen)}>
+                    ☰
+                </div>
+                <div className={`navs ${menuOpen?"active":""}`}>
 
                     <ul>
                         {
