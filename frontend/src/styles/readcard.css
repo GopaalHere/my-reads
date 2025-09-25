@@ -34,3 +34,11 @@
     font-size: 1.2rem;
     font-weight: 600;
 }
+.readCardContainer button{
+    padding: 5px;
+    border: none;
+    background-color: rgb(241, 92, 92);
+    box-shadow: 5px 5px 0px black;
+    margin: 5px;
+    cursor: pointer;
+}

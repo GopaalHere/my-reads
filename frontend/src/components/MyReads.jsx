@@ -17,13 +17,16 @@ const MyReads=()=>{
         setMyreads(sorted);
         setAscending(!ascending);
     }
+    const handleReadDelete=(id)=>{
+        setMyreads(reads.filter((r)=>r._id!==id));
+    }
  return(
     <>
     <button onClick={toggleSort} style={{fontWeight:"600",padding:"5px",cursor:"pointer"}}>Sort ↑↓</button>
     <div style={{display:"flex",flexWrap:"wrap"}}>
         {
             reads.map((read,index)=>(
-             <ReadCard key={read._id} read={read} index={index}/>
+             <ReadCard key={read._id} read={read} index={index} handleReadDelete={()=>handleReadDelete(read._id)}/>
             ))
         }
     </div>

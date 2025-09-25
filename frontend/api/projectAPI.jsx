@@ -30,3 +30,7 @@ export const getcurrentuser = async()=>{
     const res = await authAPI.get('/me');
     return res.data;
 }
+export const deleteRead=async(id)=>{
+    const res = await API.delete(`/delete/${id}`)
+    return res.data;
+}
