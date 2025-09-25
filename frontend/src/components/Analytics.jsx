@@ -3,6 +3,7 @@ import{Chart as ChartJS, CategoryScale,LinearScale,PointElement,LineElement,Titl
 import { useState } from 'react';
 import { getAnalytics } from '../../api/projectAPI';
 import { useEffect } from 'react';
+import '../styles/analytics.css'
 
 ChartJS.register(CategoryScale,LinearScale,PointElement,LineElement,Title,Tooltip,Legend);
 
@@ -35,9 +36,9 @@ const Analytics=()=>{
         fetchData(period);
     },[period]);
     return(
-        <div style={{width:"80%",margin:"50px auto"}}>
+        <div className='chartContainer'>
             <h2>Reading Analytics</h2>
-            <div style={{marginBottom:"20px"}}>
+            <div className='bts'>
                 <label htmlFor="period">View By</label>
                 <select id="period" value={period} onChange={(e)=>setPeriod(e.target.value)} style={{padding:"5px",marginLeft:"10px"}}>
                     <option value="weekly">Weekly</option>
@@ -48,7 +49,7 @@ const Analytics=()=>{
             {loading?(
                 <p>Loading Chart..</p>
             ):(
-                <Line data={chartData}/>
+                <Line style={{backgroundColor:"white"}} data={chartData}/>
             )}
         </div>
     )
