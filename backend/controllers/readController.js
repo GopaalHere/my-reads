@@ -24,3 +24,11 @@ export const getreads = async(req,res)=>{
         res.json({success:false,message:err.message})
     }
 }
+export const deleteRead = async(req,res)=>{
+    try{
+        const read = await Read.findByIdAndDelete(req.params._id);
+        res.json({success:true,message:"Read Deleted",result:read})
+    }catch(err){
+        res.json({success:false,message:"CouldN't Delete",error:err.message})
+    }
+}
