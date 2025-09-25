@@ -39,3 +39,39 @@
     box-shadow: 5px 5px 2px black;
     cursor: pointer;
 }
+.hamburger{
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background-color: rgb(165, 42, 128);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.708);
+}
+@media (max-width: 768px) {
+  .navs {
+    position: absolute;
+    top: 60px;   /* below navbar */
+    left: 0;
+    right: 0;
+    background: rgba(165, 42, 128, 0.832);
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    display: none; 
+  }
+
+  .navs.active {
+    display: flex; 
+  }
+
+  .navs ul {
+    flex-direction: column;
+    background: rgba(165, 42, 128, 0.178);
+    gap: 15px;
+  }
+  .navs ul li a{
+  }
+  .hamburger {
+    display: block;
+  }
+}
