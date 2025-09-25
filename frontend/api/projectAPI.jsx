@@ -42,3 +42,8 @@ export const updateRead = async(id,updateData)=>{
     const res = await API.put(`/update/${id}`,updateData);
     return res.data;
 }
+
+export const getAnalytics = async(period="monthly")=>{
+    const res = await API.get(`/analytics?period=${period}`);
+    return res.data;
+}

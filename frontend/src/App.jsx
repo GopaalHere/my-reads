@@ -8,6 +8,7 @@ import { useState } from "react"
 import UpdateRead from "./components/UpdateRead"
 import { useContext } from "react"
 import { AuthContext } from "./context/AuthContext"
+import Analytics from "./components/Analytics"
 
 function App() {
   const{user} = useContext(AuthContext);
@@ -26,6 +27,7 @@ function App() {
             <>
               <Route path="/" element={<MyReads />} />
               <Route path="/update/:id" element={<UpdateRead />} />
+              <Route path="/analytics" element={<Analytics/>}/>
               <Route path="/addnew" element={user ? <AddNew /> : <Navigate to='/login' replace />} />
             </>
           )
