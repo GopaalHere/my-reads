@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import '../styles/signup.css'
 import { login } from '../../api/projectAPI.jsx';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext.jsx';
 const Login = () => {
+    const { setUser } = useContext(AuthContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,16 +13,21 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const userData = {email: email, password: password };
+        const userData = { email: email, password: password };
         try {
             const result = await login(userData);
-            alert(result.message);
-            setEmail("");
-            setPassword("");
-            navigate('/')
+            if (result.success) {
+                setUser(result.user);
+                alert(result.message);
+                setEmail("");
+                setPassword("");
+                navigate('/')
+            }else{
+                alert(result.message||"login failed")
+            }
         }
-        catch(err){
-            console.log(err.response?.data||err.message)
+        catch (err) {
+            console.log(err.response?.data || err.message)
             alert("Login failed")
         }
     }

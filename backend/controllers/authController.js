@@ -44,7 +44,8 @@ export const login = async (req, res) => {
                 sameSite: 'lax',
                 secure: false,
                 maxAge: 5 * 24 * 60 * 60 * 1000
-            }).json({ success: true, message: "login successfull" })
+            })
+        res.json({ success: true, message: "login successfull",user:{id:user._id,name:user.name,email:user.email} })
     } catch (err) {
         res.status(500).json({ error: err.message })
     }
