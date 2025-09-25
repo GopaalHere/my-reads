@@ -6,18 +6,31 @@ import AddNew from "./components/AddNew"
 import MyReads from "./components/MyReads"
 import { useState } from "react"
 import UpdateRead from "./components/UpdateRead"
+import { useContext } from "react"
+import { AuthContext } from "./context/AuthContext"
 
 function App() {
-   const[user,setUser] = useState(null);
+  const{user} = useContext(AuthContext);
   return (
     <>
-    <Navbar user={user} setUser={setUser}/>
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<MyReads/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/login" element={<Login setUser={setUser}/>}/>
-        <Route path="/update/:id" element={<UpdateRead/>}/>
-        <Route path="/addnew" element={user?<AddNew/>:<Navigate to='/login' replace/>}/>
+        {
+          !user ? (
+            <>
+              <Route path="/" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path='*' element={<Navigate to='/' />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<MyReads />} />
+              <Route path="/update/:id" element={<UpdateRead />} />
+              <Route path="/addnew" element={user ? <AddNew /> : <Navigate to='/login' replace />} />
+            </>
+          )
+        }
+
       </Routes>
     </>
   )

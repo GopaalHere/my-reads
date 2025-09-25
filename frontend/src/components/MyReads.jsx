@@ -1,38 +1,46 @@
 import { useEffect, useState } from "react";
 import { getreads } from "../../api/projectAPI.jsx";
 import ReadCard from "./ReadCard.jsx";
-const MyReads=()=>{
-    const[reads,setMyreads] = useState([]);
-    const[ascending,setAscending] = useState(false);
-
-    useEffect(()=>{
-     loadReads();
-    },[])
-    const loadReads = async()=>{
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
+const MyReads = () => {
+    const [reads, setMyreads] = useState([]);
+    const [ascending, setAscending] = useState(false);
+    const { user } = useContext(AuthContext)
+    useEffect(() => {
+        if (user) {
+            loadReads();
+        }
+    }, [user])
+    const loadReads = async () => {
         const read = await getreads();
         setMyreads(read.reads)
     }
-    const toggleSort=()=>{
-        const sorted = [...reads].sort((a,b)=>ascending?a.rating-b.rating:b.rating-a.rating);
+    const toggleSort = () => {
+        const sorted = [...reads].sort((a, b) => ascending ? a.rating - b.rating : b.rating - a.rating);
         setMyreads(sorted);
         setAscending(!ascending);
     }
-    const handleReadDelete=(id)=>{
-        setMyreads(reads.filter((r)=>r._id!==id));
+    const handleReadDelete = (id) => {
+        setMyreads(reads.filter((r) => r._id !== id));
     }
- return(
-    <>
-    <button onClick={toggleSort} style={{fontWeight:"600",padding:"5px",cursor:"pointer"}}>Sort ↑↓</button>
-    <div style={{display:"flex",flexWrap:"wrap"}}>
-        {
-            reads.map((read,index)=>(
-             <ReadCard key={read._id} read={read} index={index} handleReadDelete={()=>handleReadDelete(read._id)}/>
-            ))
-        }
-    </div>
-    
-    </>
- )   
+    return (
+        <>
+            {
+                user && (
+                    <button onClick={toggleSort} style={{ fontWeight: "600", padding: "5px", cursor: "pointer" }}>Sort ↑↓</button>
+                )
+            }
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+                {
+                    reads.map((read, index) => (
+                        <ReadCard key={read._id} read={read} index={index} handleReadDelete={() => handleReadDelete(read._id)} />
+                    ))
+                }
+            </div>
+
+        </>
+    )
 }
 
 export default MyReads;

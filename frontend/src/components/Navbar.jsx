@@ -2,26 +2,25 @@ import { useContext, useEffect, useState } from 'react'
 import { logout } from '../../api/projectAPI.jsx'
 import '../styles/navbar.css'
 import { AuthContext } from '../context/AuthContext.jsx'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 const Navbar = () => {
 
     const { user, setUser } = useContext(AuthContext);
-    
+    const navigate = useNavigate();
     const location = useLocation();
     const handleLogout = async () => {
         try {
             await logout();
-            window.location.href = "/login";
+            setUser(null);
+            navigate('/login')
         } catch (err) {
             console.log("Logout Failed", err.message)
         }
     }
     let authLink
-    if (location.pathname === '/login') {
+    if (location.pathname === '/login'||location.pathname==='/') {
         authLink = <li><Link to="/signup">SignUp</Link></li>
     } else if (location.pathname === '/signup') {
-        authLink = <li><Link to="/login">Login</Link></li>
-    } else {
         authLink = <li><Link to="/login">Login</Link></li>
     }
     return (
@@ -43,7 +42,7 @@ const Navbar = () => {
                                 </>
                             ) : (
 
-                            authLink
+                                authLink
 
                             )
                         }
