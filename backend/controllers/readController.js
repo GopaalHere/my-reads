@@ -67,7 +67,7 @@ export const getAnalytics=async(req,res)=>{
             let key;
             if(period==="weekly"){
                 const week = moment(date).week();
-                const yaer = date.getFullYear();
+                const year = date.getFullYear();
                 key = `W${week} ${year}`;
             }else if(period==="yearly"){
                 key = `${date.getFullYear()}`;

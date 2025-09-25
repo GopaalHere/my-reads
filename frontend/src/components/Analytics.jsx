@@ -49,7 +49,27 @@ const Analytics=()=>{
             {loading?(
                 <p>Loading Chart..</p>
             ):(
-                <Line style={{backgroundColor:"white"}} data={chartData}/>
+                <Line style={{backgroundColor:"white"}} data={chartData}
+                //fixed int problem
+                options={{
+                    responsive:true,
+                    plugins:{
+                        legend:{position:"top"},
+                        title:{display:true,text:"Books Read Over Time"}
+                    },
+                    scales:{
+                        y:{
+                            beginAtZero:true,
+                            ticks:{
+                                stepSize:1,
+                                callback: function(value){
+                                    return Number.isInteger(value)?value:null;
+                                }
+                            }
+                        }
+                    }
+                }}
+                />
             )}
         </div>
     )
