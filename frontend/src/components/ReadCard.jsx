@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { deleteRead } from '../../api/projectAPI.jsx'
 import '../styles/readcard.css'
 const ReadCard = ({ read, index, handleReadDelete }) => {
@@ -20,6 +21,7 @@ const ReadCard = ({ read, index, handleReadDelete }) => {
                 <h2>Rating : {read.rating}</h2>
                 <p>Notes: {read.notes}</p>
                 <button onClick={handleDelete}>Delete</button>
+                <Link to={`/update/${read._id}`}>Update</Link>
             </div>
         </div>
     )

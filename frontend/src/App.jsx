@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"
 import AddNew from "./components/AddNew"
 import MyReads from "./components/MyReads"
 import { useState } from "react"
+import UpdateRead from "./components/UpdateRead"
 
 function App() {
    const[user,setUser] = useState(null);
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<MyReads/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/login" element={<Login setUser={setUser}/>}/>
+        <Route path="/update/:id" element={<UpdateRead/>}/>
         <Route path="/addnew" element={user?<AddNew/>:<Navigate to='/login' replace/>}/>
       </Routes>
     </>

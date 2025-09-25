@@ -34,3 +34,11 @@ export const deleteRead=async(id)=>{
     const res = await API.delete(`/delete/${id}`)
     return res.data;
 }
+export const getOneRead=async(id)=>{
+    const res = await API.get(id);
+    return res.data;
+}
+export const updateRead = async(id,updateData)=>{
+    const res = await API.put(`/update/${id}`,updateData);
+    return res.data;
+}

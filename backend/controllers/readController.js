@@ -32,3 +32,24 @@ export const deleteRead = async(req,res)=>{
         res.json({success:false,message:"CouldN't Delete",error:err.message})
     }
 }
+export const getOneRead = async(req,res)=>{
+    try{
+        const read = await Read.findById(req.params._id);
+        res.json({success:true,message:"One Read Fetched",result:read});
+    }catch(err){
+        res.json({success:false,message:"Couldn't fetch the read",error:err.message})
+    }
+}
+export const updateRead = async(req,res)=>{
+    try{
+        const{id} = req.params;
+        const updateData = req.body;
+        const read = await Read.findByIdAndUpdate(id,updateData,{new:true});
+        if(!read){
+            return res.json({success:false,message:"Read Not found"});
+        }
+        res.json({success:true,message:"Read data updated",result:read})
+    }catch(err){
+        res.json({success:false,error:err.message});
+    }
+}
