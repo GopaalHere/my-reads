@@ -1,22 +1,27 @@
 import { useState } from 'react'
 import '../styles/signup.css'
 import { signup } from '../../api/projectAPI.jsx';
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userData = { name: name, email: email, password: password };
         try {
             const result = await signup(userData);
-            alert(result.message);
-            setEmail("");
-            setName("");
-            setPassword("");
+            if (result.success) {
+                alert(result.message);
+                setEmail("");
+                setName("");
+                setPassword("");
+                navigate('/login')
+            }
         }
-        catch(err){
-            console.log(err.response?.data||err.message)
+        catch (err) {
+            console.log(err.response?.data || err.message)
             alert("Signup failed")
         }
     }

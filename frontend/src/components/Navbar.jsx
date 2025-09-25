@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from 'react'
 import { logout } from '../../api/projectAPI.jsx'
 import '../styles/navbar.css'
 import { AuthContext } from '../context/AuthContext.jsx'
+import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
 
-const{user,setUser} = useContext(AuthContext);
-
-
+    const { user, setUser } = useContext(AuthContext);
+    
+    const location = useLocation();
     const handleLogout = async () => {
         try {
             await logout();
@@ -14,6 +15,14 @@ const{user,setUser} = useContext(AuthContext);
         } catch (err) {
             console.log("Logout Failed", err.message)
         }
+    }
+    let authLink
+    if (location.pathname === '/login') {
+        authLink = <li><Link to="/signup">SignUp</Link></li>
+    } else if (location.pathname === '/signup') {
+        authLink = <li><Link to="/login">Login</Link></li>
+    } else {
+        authLink = <li><Link to="/login">Login</Link></li>
     }
     return (
 
@@ -28,14 +37,14 @@ const{user,setUser} = useContext(AuthContext);
                         {
                             user ? (
                                 <>
-                                    <li>Add New</li>
-                                    <li>Reads</li>
+                                    <li><Link to='/addnew'>Add New</Link></li>
+                                    <li><Link to='/'>Reads</Link></li>
                                     <li><button onClick={handleLogout}>LogOut</button></li>
                                 </>
                             ) : (
-                                <>
-                                    <li>SignUp</li>
-                                </>
+
+                            authLink
+
                             )
                         }
                     </ul>
