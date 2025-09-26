@@ -1,9 +1,8 @@
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
+const isProduction = process.env.NODE_ENV === 'production';
 export const signup = async (req, res) => {
-    const isProduction = process.env.NODE_ENV === 'production';
-
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
