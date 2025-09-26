@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 export const signup = async (req, res) => {
+    const isProduction = process.env.NODE_ENV === 'production';
 
     const { name, email, password } = req.body;
 
@@ -15,12 +16,13 @@ export const signup = async (req, res) => {
 
     const newUser = await User.create({ name, email, password });
     const token = jwt.sign({ id: newUser._id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '5d' })
-    res.cookie('token', token, 
-    {httpOnly: true,
-    sameSite: 'lax',
-    secure: true,
-    maxAge: 5 * 24 * 60 * 60 * 1000
-    }).json({ success: true, message: "New User Created" })
+    res.cookie('token', token,
+        {
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? 'none' : 'lax',
+            maxAge: 5 * 24 * 60 * 60 * 1000
+        }).json({ success: true, message: "New User Created" })
 }
 
 export const login = async (req, res) => {
@@ -41,11 +43,11 @@ export const login = async (req, res) => {
         res.cookie('token', token,
             {
                 httpOnly: true,
-                sameSite: 'lax',
-                secure: true,
+                secure: isProduction,
+                sameSite: isProduction ? 'none' : 'lax',
                 maxAge: 5 * 24 * 60 * 60 * 1000
             })
-        res.json({ success: true, message: "login successfull",user:{id:user._id,name:user.name,email:user.email} })
+        res.json({ success: true, message: "login successfull", user: { id: user._id, name: user.name, email: user.email } })
     } catch (err) {
         res.status(500).json({ error: err.message })
     }
