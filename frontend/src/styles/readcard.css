@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
 .readCardContainer{
     margin-top: 100px;
     border: 2px solid rgb(255, 0, 170);
@@ -12,8 +14,10 @@
 
 .details,h2,p, .readCardContainer h1{
     background-color: rgb(235, 185, 193);
+    font-family: 'Lato', sans-serif;
 }
 .readCardContainer h1{
+    font-family: 'Playfair Display', serif;
     padding: 5px;
     font-size: 1.5rem;
     background-color: rgb(237, 138, 166);
