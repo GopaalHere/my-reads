@@ -56,7 +56,7 @@ export const updateRead = async(req,res)=>{
 
 export const getAnalytics=async(req,res)=>{
     try{
-        const {period="montly"} = req.query;
+        const {period="monthly"} = req.query;
         const userId = req.user.id;
         const reads = await Read.find({user:userId});
         const analytics = {};
